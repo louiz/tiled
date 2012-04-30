@@ -62,6 +62,27 @@ bool Zoomable::canZoomOut() const
     return mScale > zoomFactors[0];
 }
 
+void Zoomable::handleWheelDelta(int delta)
+{
+    if (delta <= -120) {
+        zoomOut();
+    } else if (delta >= 120) {
+        zoomIn();
+    } else {
+        /*
+         * We're dealing with a finer-resolution mouse. Allow it to have finer
+         * control over the zoom level.
+         */
+        qreal factor = 1 + 0.3 * qAbs(qreal(delta) / 8 / 15);
+        if (delta < 0)
+            factor = 1 / factor;
+
+        setScale(qBound(zoomFactors[0],
+                        mScale * factor,
+                        zoomFactors[zoomFactorCount - 1]));
+    }
+}
+
 void Zoomable::zoomIn()
 {
     for (int i = 0; i < zoomFactorCount; ++i) {
