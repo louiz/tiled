@@ -1,7 +1,8 @@
 /*
- * objectgrouppropertiesdialog.h
+ * layerpropertiesdialog.h
  * Copyright 2009-2010, Thorbjørn Lindeijer <thorbjorn@lindeijer.nl>
  * Copyright 2010, Michael Woerister <michaelwoerister@gmail.com>
+ * Copyright 20012, Florent Le Coz <louiz@louiz.org>
  *
  * This file is part of Tiled.
  *
@@ -19,37 +20,40 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OBJECTGROUPPROPERTIESDIALOG_H
-#define OBJECTGROUPPROPERTIESDIALOG_H
+#ifndef LAYERPROPERTIESDIALOG_H
+#define LAYERPROPERTIESDIALOG_H
 
-#include "layerpropertiesdialog.h"
+#include "propertiesdialog.h"
+#include "mapdocument.h"
+#include "layer.h"
+
+#include <QSpinBox>
 
 namespace Tiled {
-
-class ObjectGroup;
-
 namespace Internal {
 
-class MapDocument;
-class ColorButton;
-
-class ObjectGroupPropertiesDialog : public LayerPropertiesDialog
+class LayerPropertiesDialog: public PropertiesDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
-    ObjectGroupPropertiesDialog(MapDocument *mapDocument,
-                                ObjectGroup *objectGroup,
-                                QWidget *parent = 0);
+  public:
+  LayerPropertiesDialog(const QString &kind,
+                        Layer *layer,
+                        MapDocument *MapDocument,
+                        QWidget *parent = 0);
+  void accept();
 
-    void accept();
+protected:
+  MapDocument *mMapDocument;
 
 private:
-    ObjectGroup *mObjectGroup;
-    ColorButton *mColorButton;
+  Layer* mLayer;
+  QSpinBox *mXSpin;
+  QSpinBox *mYSpin;
 };
 
-} // namespace Internal
-} // namespace Tiled
+} // Internal namespace
+} // Tiled namespace
 
-#endif // OBJECTGROUPPROPERTIESDIALOG_H
+
+#endif // LAYERPROPERTIESDIALOG_H

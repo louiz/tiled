@@ -23,7 +23,7 @@
 #ifndef IMAGELAYERPROPERTIESDIALOG_H
 #define IMAGELAYERPROPERTIESDIALOG_H
 
-#include "propertiesdialog.h"
+#include "layerpropertiesdialog.h"
 #include <QValidator>
 
 class QLineEdit;
@@ -50,7 +50,7 @@ private:
     Q_DISABLE_COPY(PathValidator)
 };
 
-class ImageLayerPropertiesDialog : public PropertiesDialog
+class ImageLayerPropertiesDialog : public LayerPropertiesDialog
 {
     Q_OBJECT
 
@@ -66,7 +66,6 @@ private slots:
     void imagePathChanged();
 
 private:
-    MapDocument *mMapDocument;
     ImageLayer *mImageLayer;
     ColorButton *mColorButton;
     QLineEdit *mImage;

@@ -57,11 +57,10 @@ ImageLayerPropertiesDialog::ImageLayerPropertiesDialog(
     MapDocument *mapDocument,
     ImageLayer *imageLayer,
     QWidget *parent)
-    : PropertiesDialog(tr("Image Layer"),
+    : LayerPropertiesDialog(tr("Image Layer"),
           imageLayer,
-          mapDocument->undoStack(),
+          mapDocument,
           parent)
-    , mMapDocument(mapDocument)
     , mImageLayer(imageLayer)
     , mColorButton(new ColorButton)
 {
@@ -84,7 +83,7 @@ ImageLayerPropertiesDialog::ImageLayerPropertiesDialog(
         ? mImageLayer->transparentColor()
         : Qt::gray);
 
-    qobject_cast<QBoxLayout*>(layout())->insertLayout(0, grid);
+    qobject_cast<QBoxLayout*>(layout())->insertLayout(1, grid);
 }
 
 void ImageLayerPropertiesDialog::browseForImage()

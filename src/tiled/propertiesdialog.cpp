@@ -107,9 +107,9 @@ void PropertiesDialog::showDialogFor(Layer *layer,
                                                 imageLayer,
                                                 parent);
     } else {
-        dialog = new PropertiesDialog(tr("Layer"),
+        dialog = new LayerPropertiesDialog(tr("Layer"),
                                       layer,
-                                      mapDocument->undoStack(),
+                                      mapDocument,
                                       parent);
     }
 

@@ -76,6 +76,7 @@ SOURCES += aboutdialog.cpp \
     languagemanager.cpp \
     layerdock.cpp \
     layermodel.cpp \
+    layerpropertiesdialog.cpp \
     main.cpp \
     mainwindow.cpp \
     mapdocumentactionhandler.cpp \
@@ -170,6 +171,7 @@ HEADERS += aboutdialog.h \
     languagemanager.h \
     layerdock.h \
     layermodel.h \
+    layerpropertiesdialog.h \
     macsupport.h \
     mainwindow.h \
     mapdocumentactionhandler.h \

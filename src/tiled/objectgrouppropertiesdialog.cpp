@@ -40,11 +40,10 @@ ObjectGroupPropertiesDialog::ObjectGroupPropertiesDialog(
     ObjectGroup *objectGroup,
     QWidget *parent)
 
-    : PropertiesDialog(tr("Object Layer"),
+    : LayerPropertiesDialog(tr("Object Layer"),
                        objectGroup,
-                       mapDocument->undoStack(),
+                       mapDocument,
                        parent)
-    , mMapDocument(mapDocument)
     , mObjectGroup(objectGroup)
     , mColorButton(new ColorButton)
 {
@@ -56,7 +55,7 @@ ObjectGroupPropertiesDialog::ObjectGroupPropertiesDialog(
         ? mObjectGroup->color()
         : Qt::gray);
 
-    qobject_cast<QBoxLayout*>(layout())->insertLayout(0, grid);
+    qobject_cast<QBoxLayout*>(layout())->insertLayout(1, grid);
 }
 
 void ObjectGroupPropertiesDialog::accept()
