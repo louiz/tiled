@@ -111,6 +111,7 @@ private:
 
     QPoint mCaptureStart;
     int mStampX, mStampY;
+    int mStampXOffset, mStampYOffset;
 
     /**
      * This updates the brush item.

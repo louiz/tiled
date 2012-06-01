@@ -177,11 +177,13 @@ static QVector<QPoint> calculateLine(int x0, int y0, int x1, int y1)
 void StampBrush::tilePositionChanged(const QPoint &)
 {
     const int x = mStampX;
+    const int xOffset = mStampXOffset;
     const int y = mStampY;
+    const int yOffset = mStampYOffset;
     updatePosition();
     switch (mBrushBehavior) {
     case Paint:
-        foreach (const QPoint &p, calculateLine(x, y, mStampX, mStampY))
+        foreach (const QPoint &p, calculateLine(xOffset, yOffset, mStampXOffset, mStampYOffset))
             doPaint(true, p.x(), p.y());
         break;
     case LineStartSet:
@@ -398,7 +400,7 @@ void StampBrush::beginPaint()
         return;
 
     mBrushBehavior = Paint;
-    doPaint(false, mStampX, mStampY);
+    doPaint(false, mStampXOffset, mStampYOffset);
 }
 
 void StampBrush::beginCapture()
@@ -408,7 +410,7 @@ void StampBrush::beginCapture()
 
     mBrushBehavior = Capture;
 
-    mCaptureStart = tilePosition();
+    mCaptureStart = tilePositionWithOffset();
 
     setStamp(0);
 }
@@ -481,19 +483,28 @@ void StampBrush::updatePosition()
         setRandomStamp();
 
     const QPoint tilePos = tilePosition();
+    const QPoint tilePosOffset = tilePositionWithOffset();
 
     if (!brushItem()->tileLayer()) {
         brushItem()->setTileRegion(QRect(tilePos, QSize(1, 1)));
         mStampX = tilePos.x();
         mStampY = tilePos.y();
+        mStampXOffset = tilePosOffset.x();
+        mStampYOffset = tilePosOffset.y();
     }
 
     if (mIsRandom || !mStamp) {
         mStampX = tilePos.x();
         mStampY = tilePos.y();
+        mStampXOffset = tilePosOffset.x();
+        mStampYOffset = tilePosOffset.y();
+
     } else {
         mStampX = tilePos.x() - mStamp->width() / 2;
         mStampY = tilePos.y() - mStamp->height() / 2;
+        mStampXOffset = tilePosOffset.x() - mStamp->width() / 2;
+        mStampYOffset = tilePosOffset.y() - mStamp->height() / 2;
+
     }
     brushItem()->setTileLayerPosition(QPoint(mStampX, mStampY));
 }

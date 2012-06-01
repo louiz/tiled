@@ -40,6 +40,7 @@ AbstractTileTool::AbstractTileTool(const QString &name,
     , mTilePositionMethod(OnTiles)
     , mBrushItem(new BrushItem)
     , mTileX(0), mTileY(0)
+    , mTileXOffset(0), mTileYOffset(0)
     , mBrushVisible(false)
 {
     mBrushItem->setVisible(false);
@@ -75,18 +76,31 @@ void AbstractTileTool::mouseMoved(const QPointF &pos, Qt::KeyboardModifiers)
 {
     const MapRenderer *renderer = mapDocument()->renderer();
     const QPointF tilePosF = renderer->pixelToTileCoords(pos);
+    const QPointF tilePosFOffset = renderer->pixelToTileCoords(pos +
+                                     currentTileLayer()->getOffset());
+
     QPoint tilePos;
+    QPoint tilePosOffset;
 
     if (mTilePositionMethod == BetweenTiles)
+      {
         tilePos = tilePosF.toPoint();
+        tilePosOffset = tilePosFOffset.toPoint();
+      }
     else
+      {
         tilePos = QPoint((int) std::floor(tilePosF.x()),
                          (int) std::floor(tilePosF.y()));
+        tilePosOffset = QPoint((int) std::floor(tilePosFOffset.x()),
+                               (int) std::floor(tilePosFOffset.y()));
+      }
 
     if (mTileX != tilePos.x() || mTileY != tilePos.y()) {
         mTileX = tilePos.x();
         mTileY = tilePos.y();
 
+        mTileXOffset = tilePosOffset.x();
+        mTileYOffset = tilePosOffset.y();
         tilePositionChanged(tilePos);
         updateStatusInfo();
     }

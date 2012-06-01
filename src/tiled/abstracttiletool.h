@@ -100,6 +100,8 @@ protected:
      * Returns the last recorded tile position of the mouse.
      */
     QPoint tilePosition() const { return QPoint(mTileX, mTileY); }
+    QPoint tilePositionWithOffset() const
+    { return QPoint(mTileXOffset, mTileYOffset); }
 
     /**
      * Returns the brush item. The brush item is used to give an indication of
@@ -122,6 +124,7 @@ private:
     TilePositionMethod mTilePositionMethod;
     BrushItem *mBrushItem;
     int mTileX, mTileY;
+    int mTileXOffset, mTileYOffset;
     bool mBrushVisible;
 };
 
