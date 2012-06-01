@@ -79,7 +79,7 @@ void ObjectGroupPropertiesDialog::accept()
             mColorButton->color()));
     }
 
-    PropertiesDialog::accept();
+    LayerPropertiesDialog::accept();
 
     if (localChanges)
         undoStack->endMacro();

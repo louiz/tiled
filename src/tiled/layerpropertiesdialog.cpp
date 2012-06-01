@@ -21,6 +21,7 @@
  */
 
 #include "layerpropertiesdialog.h"
+#include "changelayerproperties.h"
 #include "mapdocument.h"
 #include "mapobject.h"
 #include "layer.h"
@@ -28,6 +29,7 @@
 #include <QSpinBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QUndoStack>
 
 using namespace Tiled;
 using namespace Tiled::Internal;
@@ -48,9 +50,11 @@ LayerPropertiesDialog::LayerPropertiesDialog(
   QGridLayout *grid = new QGridLayout;
   mXSpin = new QSpinBox;
   mXSpin->setSuffix(tr(" px"));
+  mXSpin->setValue(layer->getOffset().x());
 
   mYSpin = new QSpinBox;
   mYSpin->setSuffix(tr(" px"));
+  mYSpin->setValue(layer->getOffset().y());
 
   grid->addWidget(new QLabel(tr("X offset")), 0, 0);
   grid->addWidget(mXSpin, 0, 1);
@@ -61,5 +65,11 @@ LayerPropertiesDialog::LayerPropertiesDialog(
 
 void LayerPropertiesDialog::accept()
 {
-  // TODO save the spins values into the layer.
+  QUndoStack *undoStack = mMapDocument->undoStack();
+  QPoint newOffset(mXSpin->value(), mYSpin->value());
+  undoStack->push(new ChangeLayerProperties(
+                            mMapDocument,
+                            mLayer,
+                            newOffset));
+  PropertiesDialog::accept();
 }

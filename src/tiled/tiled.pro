@@ -53,6 +53,7 @@ SOURCES += aboutdialog.cpp \
     bucketfilltool.cpp \
     changemapobject.cpp \
     changeimagelayerproperties.cpp \
+    changelayerproperties.cpp \
     changeobjectgroupproperties.cpp \
     changepolygon.cpp \
     changeproperties.cpp \
@@ -148,6 +149,7 @@ HEADERS += aboutdialog.h \
     bucketfilltool.h \
     changemapobject.h \
     changeimagelayerproperties.h\
+    changelayerproperties.h \
     changeobjectgroupproperties.h \
     changepolygon.h \
     changeproperties.h \

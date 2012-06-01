@@ -46,7 +46,8 @@ Layer::Layer(Type type, const QString &name, int x, int y,
     mHeight(height),
     mOpacity(1.0f),
     mVisible(true),
-    mMap(0)
+    mMap(0),
+    mOffset(0, 0)
 {
 }
 

@@ -128,7 +128,7 @@ void ImageLayerPropertiesDialog::accept()
                             newPath));
     }
 
-    PropertiesDialog::accept();
+    LayerPropertiesDialog::accept();
 
     if (localChanges)
         undoStack->endMacro();

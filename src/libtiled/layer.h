@@ -37,6 +37,7 @@
 #include <QSet>
 #include <QString>
 #include <QVector>
+#include <QPoint>
 
 namespace Tiled {
 
@@ -157,6 +158,19 @@ public:
      */
     QRect bounds() const { return QRect(mX, mY, mWidth, mHeight); }
 
+    /**
+     * Sets the offset of the layer. This offset is used when it's displayed
+     * on the MapDocument.
+     */
+    void setOffset(int x, int y) { mOffset.setX(x); mOffset.setY(y); }
+    void setOffset(const QPoint& p)
+    { mOffset.setX(p.x()); mOffset.setY(p.y()); }
+
+    /**
+     * Returns the offset of the layer.
+     */
+    const QPoint& getOffset() const { return mOffset; }
+
     virtual bool isEmpty() const = 0;
 
     /**
@@ -231,6 +245,7 @@ protected:
     float mOpacity;
     bool mVisible;
     Map *mMap;
+    QPoint mOffset;
 };
 
 } // namespace Tiled
