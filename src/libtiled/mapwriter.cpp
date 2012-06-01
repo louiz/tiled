@@ -375,6 +375,12 @@ void MapWriterPrivate::writeLayerAttributes(QXmlStreamWriter &w,
         w.writeAttribute(QLatin1String("visible"), QLatin1String("0"));
     if (opacity != qreal(1))
         w.writeAttribute(QLatin1String("opacity"), QString::number(opacity));
+    const QPoint offset = layer->getOffset();
+    if (!offset.isNull())
+      {
+        w.writeAttribute(QLatin1String("xoffset"), QString::number(offset.x()));
+        w.writeAttribute(QLatin1String("yoffset"), QString::number(offset.y()));
+      }
 }
 
 void MapWriterPrivate::writeObjectGroup(QXmlStreamWriter &w,

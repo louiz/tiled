@@ -364,6 +364,8 @@ static void readLayerAttributes(Layer *layer,
 {
     const QStringRef opacityRef = atts.value(QLatin1String("opacity"));
     const QStringRef visibleRef = atts.value(QLatin1String("visible"));
+    const QStringRef xoffsetRef = atts.value(QLatin1String("xoffset"));
+    const QStringRef yoffsetRef = atts.value(QLatin1String("yoffset"));
 
     bool ok;
     const float opacity = opacityRef.toString().toFloat(&ok);
@@ -373,6 +375,14 @@ static void readLayerAttributes(Layer *layer,
     const int visible = visibleRef.toString().toInt(&ok);
     if (ok)
         layer->setVisible(visible);
+
+    int xoffset = xoffsetRef.toString().toInt(&ok);
+    if (!ok)
+      xoffset = 0;
+    int yoffset = yoffsetRef.toString().toInt(&ok);
+    if (!ok)
+      yoffset = 0;
+    layer->setOffset(xoffset, yoffset);
 }
 
 TileLayer *MapReaderPrivate::readLayer()
