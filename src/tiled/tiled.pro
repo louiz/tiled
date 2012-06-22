@@ -52,6 +52,7 @@ SOURCES += aboutdialog.cpp \
     brushitem.cpp \
     bucketfilltool.cpp \
     changemapobject.cpp \
+    changemapproperties.cpp \
     changeimagelayerproperties.cpp \
     changelayerproperties.cpp \
     changeobjectgroupproperties.cpp \
@@ -72,6 +73,7 @@ SOURCES += aboutdialog.cpp \
     erasetiles.cpp \
     filesystemwatcher.cpp \
     filltiles.cpp \
+    geometry.cpp \
     imagelayeritem.cpp \
     imagelayerpropertiesdialog.cpp \
     languagemanager.cpp \
@@ -84,6 +86,7 @@ SOURCES += aboutdialog.cpp \
     mapdocument.cpp \
     mapobjectitem.cpp \
     mapobjectmodel.cpp \
+    mappropertiesdialog.cpp \
     mapscene.cpp \
     mapview.cpp \
     movelayer.cpp \
@@ -132,7 +135,11 @@ SOURCES += aboutdialog.cpp \
     toolmanager.cpp \
     undodock.cpp \
     utils.cpp \
-    zoomable.cpp
+    zoomable.cpp \
+    terrainbrush.cpp \
+    terraindock.cpp \
+    terrainview.cpp \
+    terrainmodel.cpp
 
 HEADERS += aboutdialog.h \
     abstractobjecttool.h \
@@ -148,6 +155,7 @@ HEADERS += aboutdialog.h \
     brushitem.h \
     bucketfilltool.h \
     changemapobject.h \
+    changemapproperties.h \
     changeimagelayerproperties.h\
     changelayerproperties.h \
     changeobjectgroupproperties.h \
@@ -168,6 +176,7 @@ HEADERS += aboutdialog.h \
     erasetiles.h \
     filesystemwatcher.h \
     filltiles.h \
+    geometry.h \
     imagelayeritem.h \
     imagelayerpropertiesdialog.h \
     languagemanager.h \
@@ -180,6 +189,7 @@ HEADERS += aboutdialog.h \
     mapdocument.h \
     mapobjectitem.h \
     mapobjectmodel.h \
+    mappropertiesdialog.h \
     mapreaderinterface.h \
     mapscene.h \
     mapview.h \
@@ -232,7 +242,11 @@ HEADERS += aboutdialog.h \
     undocommands.h \
     undodock.h \
     utils.h \
-    zoomable.h
+    zoomable.h \
+    terrainbrush.h \
+    terraindock.h \
+    terrainview.h \
+    terrainmodel.h
 
 macx {
     OBJECTIVE_SOURCES += macsupport.mm
